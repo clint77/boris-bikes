@@ -1,3 +1,6 @@
+# link to the Bike class
+require 'bike'
+
 #we're describing the functionality of a specific class, Bike
 describe Bike do
 	# this is a specific feature (behaviour)
