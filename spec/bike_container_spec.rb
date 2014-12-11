@@ -59,8 +59,20 @@ describe BikeContainer do
     expect(lambda {holder.release() }).to raise_error(RuntimeError, 'Empty argument') 
   end
 
+#dock
+  it "should raise error if try to dock something that is not a bike" do
+    not_a_bike = Van.new
+    expect(lambda { holder.dock(not_a_bike) }).to raise_error(RuntimeError, 'That\'s not a bike!')
+  end
 
+# should raise error if pass an argument which is not a bike
+  it "should raise error if try to dock an empty argument" do
+    expect(lambda { holder.dock() }).to raise_error(RuntimeError, 'Empty argument')
+  end
 
+  it "should know when it's empty" do
+    expect(holder).to be_empty
+  end
 
 
 

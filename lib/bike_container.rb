@@ -18,14 +18,16 @@ def bike_count
 	bikes.count
 end
 
-def dock(bike)
+def dock(bike = nil)
+	empty_argument(bike)
+  bike_check(bike)
 	raise "Bike Container is full" if full?
 	bikes << bike
 end
 
 def release(bike = nil)
-  raise 'Empty argument' if bike == nil
-  raise 'That\'s not a bike!' if !bike.respond_to?(:broken?)
+  empty_argument(bike)
+  bike_check(bike)
 	raise 'Bike not docked' if !include_bike?(bike)
 	bikes.delete(bike)
 end
@@ -42,5 +44,20 @@ def include_bike?(bike)
 	bikes.include?(bike)
 end
 
+def is_it_a_bike?(bike)
+	bike.respond_to?(:broken?)
+end
+
+def bike_check(bike)
+  raise 'That\'s not a bike!' if !is_it_a_bike?(bike)
+end
+
+def empty_argument(bike)
+  raise 'Empty argument' if bike == nil
+end
+
+def empty?
+  bike_count == 0
+end
 
 end
