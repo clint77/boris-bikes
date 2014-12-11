@@ -75,7 +75,14 @@ describe BikeContainer do
   end
 
 
-
+#broken bikes list
+  it "should provide a list of broken bikes" do 
+    working_bike, broken_bike = Bike.new, Bike.new
+    broken_bike.break!
+    holder.dock(working_bike)
+    holder.dock(broken_bike)
+    expect(holder.broken_bikes).to eq([broken_bike])
+  end
 
 
 

@@ -60,4 +60,8 @@ def empty?
   bike_count == 0
 end
 
+def broken_bikes
+  @bikes.reject { |bike| !bike.broken?}
+end
+
 end

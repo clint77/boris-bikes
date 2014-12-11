@@ -8,8 +8,14 @@ class Van
 		self.capacity = options.fetch(:capacity, capacity)
 	end
 
-	def broken_bikes
-		@bikes.reject { |bike| !bike.broken?}
-	end
+#this should check broken on the station
+#this should load broken bikes from station into van
+#station should release the broken bikes that was loaded
+  def load_from_station(station)
+    station.broken_bikes.each do | bike |
+      van.dock(bike)
+      station.release(bike)
+    end
+  end
 
 end
