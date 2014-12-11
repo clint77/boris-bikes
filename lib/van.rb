@@ -1,6 +1,4 @@
 require_relative 'bike_container'
-require_relative 'docking_station'
-require_relative 'garage'
 
 class Van
 
@@ -10,9 +8,6 @@ class Van
 		self.capacity = options.fetch(:capacity, capacity)
 	end
 
-#this should check broken on the station
-#this should load broken bikes from station into van
-#station should release the broken bikes that was loaded
   def load_from_station(station)
     station.broken_bikes.each do | bike |
       dock(bike)
@@ -24,6 +19,13 @@ class Van
     broken_bikes.each do | bike |
       garage.dock(bike)
       release(bike)
+    end
+  end
+
+  def load_from_garage(garage)
+    garage.available_bikes.each do | bike |
+      dock(bike)
+      garage.release(bike)
     end
   end
 

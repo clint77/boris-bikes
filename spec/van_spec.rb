@@ -23,6 +23,13 @@ describe Van do
     expect(van.bikes).to eq(van.broken_bikes)
   end
 
+  it "should not exceed the capacity of the van when loading from station" do
+    10.times { station.dock(Bike.new) }
+    station.bikes.each { | bike | bike.break! }
+    expect( lambda {van.load_from_station(station)}).to raise_error(RuntimeError, 'Bike Container is full') 
+    expect(van).to be_full
+  end
+
   it "should unload broken bikes into the garage" do
     broken_bike.break!
     van.dock(broken_bike)
@@ -32,5 +39,13 @@ describe Van do
     expect(garage.bikes).to eq(garage.broken_bikes)
   end
 
+  it "should load fixed bikes from garage" do
+    broken_bike.break!
+    garage.dock(broken_bike)
+    garage.dock(working_bike)
+    van.load_from_garage(garage)
+    expect(garage.bikes).not_to include(van.bikes)
+    expect(van.bikes).to eq(van.available_bikes) 
+  end
 
 end
