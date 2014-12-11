@@ -16,6 +16,7 @@ describe Van do
     station.dock(broken_bike)
     station.dock(working_bike)
     van.load_from_station(station)
+    expect(station.bikes).not_to include(van.bikes)
     expect(van.bikes).to eq(van.broken_bikes)
   end
 
