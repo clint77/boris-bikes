@@ -11,22 +11,9 @@ describe Garage do
 		expect(garage.capacity).to eq(871)
 	end
 
-	it "should provide a list of broken bikes" do
-		broken_bike.break!
-		garage.dock(working_bike)
-		garage.dock(broken_bike)
-		expect(garage.broken_bikes).to eq([broken_bike])
-	end
-
-	it "should fix only broken bikes" do
-		broken_bike.break!
-		garage.dock(broken_bike)
-		garage.dock(working_bike)
-		garage.fix_broken_bikes
-		expect(broken_bike).not_to be_broken
-	end
-
 	it "should fix all bikes when docking" do
+		broken_bike.break!
+		garage.dock(broken_bike)
 		expect(garage.broken_bikes).to be_empty
 	end
 

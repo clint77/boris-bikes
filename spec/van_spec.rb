@@ -1,4 +1,5 @@
 #broken_bike should be intialized as broken? == true
+#refactor tests to enable refactor load / unload methods
 
 
 require 'van'
@@ -33,14 +34,15 @@ describe Van do
     expect(van).to be_full
   end
 
-  it "should unload broken bikes into the garage" do
-    broken_bike.break!
-    van.dock(broken_bike)
-    van.dock(working_bike)
-    van.unload_to_garage(garage)
-    expect(van.bikes).not_to include(garage.bikes)
-    expect(garage.bikes).to eq(garage.broken_bikes)
-  end
+  # commented out because now fixing bikes on docking to garage, need new test condition
+  # it "should unload broken bikes into the garage" do
+  #   broken_bike.break!
+  #   van.dock(broken_bike)
+  #   van.dock(working_bike)
+  #   van.unload_to_garage(garage)
+  #   expect(van.bikes).not_to include(garage.bikes)
+  #   expect(garage.bikes).to eq(garage.broken_bikes)
+  # end
 
   it "should load fixed bikes from garage" do
     broken_bike.break!
