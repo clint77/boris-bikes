@@ -26,10 +26,8 @@ describe Garage do
 		expect(broken_bike).not_to be_broken
 	end
 
-	#it "should only release bikes to a van" do
-		# method to identify receiver
-		# method to release? yes or no
-		# expect that bikes are only released if receiver == van
-	#end
+	it "should fix all bikes when docking" do
+		expect(garage.broken_bikes).to be_empty
+	end
 
 end

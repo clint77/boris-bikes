@@ -1,3 +1,8 @@
+#a method that would consolidate both the load and unload
+#taking 3 arguments of from, to, and bike status(available or broken)
+
+
+
 require_relative 'bike_container'
 
 class Van
@@ -28,5 +33,14 @@ class Van
       garage.release(bike)
     end
   end
+
+  def unload_to_station(station)
+    available_bikes.each do | bike |
+      station.dock(bike)
+      release(bike)
+    end
+  end
+
+
 
 end

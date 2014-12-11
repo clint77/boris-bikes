@@ -1,3 +1,6 @@
+#broken_bike should be intialized as broken? == true
+
+
 require 'van'
 require 'docking_station'
 require 'garage'
@@ -47,5 +50,16 @@ describe Van do
     expect(garage.bikes).not_to include(van.bikes)
     expect(van.bikes).to eq(van.available_bikes) 
   end
+
+  it "should unload fix bikes to station" do
+    broken_bike.break!
+    van.dock(broken_bike)
+    van.dock(working_bike)
+    van.unload_to_station(station)
+    expect(van.bikes).not_to include(station.bikes)
+    expect(station.bikes).to eq(station.available_bikes)
+    expect(station).not_to be_empty
+  end
+
 
 end
