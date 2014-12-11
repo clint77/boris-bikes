@@ -1,4 +1,6 @@
 require_relative 'bike_container'
+require_relative 'docking_station'
+require_relative 'garage'
 
 class Van
 
@@ -13,8 +15,15 @@ class Van
 #station should release the broken bikes that was loaded
   def load_from_station(station)
     station.broken_bikes.each do | bike |
-      van.dock(bike)
+      dock(bike)
       station.release(bike)
+    end
+  end
+
+  def unload_to_garage(garage)
+    broken_bikes.each do | bike |
+      garage.dock(bike)
+      release(bike)
     end
   end
 
