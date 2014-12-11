@@ -1,5 +1,6 @@
 require './lib/bike_container'
 
+
 class ContainerHolder; include BikeContainer; end
 
 describe BikeContainer do
@@ -40,4 +41,42 @@ describe BikeContainer do
     holder.dock(broken_bike)
     expect(holder.available_bikes).to eq([working_bike])
   end
+#release
+# should raise error if ask to release a bike which is not there
+  it "should raise error if ask to release a bike which is not there" do
+    not_docked_bike = Bike.new
+    expect(lambda { holder.release(not_docked_bike) }).to raise_error(RuntimeError, 'Bike not docked')
+  end
+
+# should raise error if pass an argument which is not a bike
+  it "should raise error if pass an argument which is not a bike" do
+    not_a_bike = Van.new
+    expect(lambda { holder.release(not_a_bike) }).to raise_error(RuntimeError, 'That\'s not a bike!')
+  end
+# should raise error if pass an empty argument
+  it "should error if pass an empty argument" do
+    
+    expect(lambda {holder.release() }).to raise_error(RuntimeError, 'Empty argument') 
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

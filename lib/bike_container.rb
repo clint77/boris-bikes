@@ -23,7 +23,10 @@ def dock(bike)
 	bikes << bike
 end
 
-def release(bike)
+def release(bike = nil)
+  raise 'Empty argument' if bike == nil
+  raise 'That\'s not a bike!' if !bike.respond_to?(:broken?)
+	raise 'Bike not docked' if !include_bike?(bike)
 	bikes.delete(bike)
 end
 
@@ -34,5 +37,10 @@ end
 def available_bikes
 	bikes.reject { |bike| bike.broken?}
 end
+
+def include_bike?(bike)
+	bikes.include?(bike)
+end
+
 
 end
