@@ -63,5 +63,14 @@ describe Van do
     expect(station).not_to be_empty
   end
 
+  it "should transfer available bikes from van to station" do
+    broken_bike.break!
+    van.dock(broken_bike)
+    van.dock(working_bike)
+    van.drop_to(station, van.available_bikes)
+    expect(van.bikes).not_to include(station.bikes)
+    expect(station.bikes).to eq(station.available_bikes)
+    expect(station).not_to be_empty
+  end
 
 end

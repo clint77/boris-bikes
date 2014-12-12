@@ -41,6 +41,25 @@ class Van
     end
   end
 
+#   def collect_from(container, bikes)
+#     bikes.each do | bike |
+#       dock(bike)
+#       container.release(bike)
+#   end
+# end
 
-
+  def drop_to(container, bikes)
+    bikes.each do |bike|
+      container.dock(bike)
+      release(bike) 
+    end     
+  end 
+  
+  # def bike_transfer(to, from)
+  #   bike_status = to.available_bikes
+  #   bike_status.each do |bike|
+  #     to.dock(bike)
+  #     from.release(bike)
+  #   end
+  # end
 end
