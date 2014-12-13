@@ -9,7 +9,7 @@ require 'garage'
 describe Van do 
 
 	let(:van) { Van.new(:capacity => 5)}
-	let(:broken_bike) {Bike.new}
+	let(:broken_bike) {Bike.new.break!}
 	let(:working_bike) {Bike.new}
   let(:station) {DockingStation.new}
   let(:garage) {Garage.new}
@@ -72,5 +72,6 @@ describe Van do
     expect(station.bikes).to eq(station.available_bikes)
     expect(station).not_to be_empty
   end
+
 
 end
