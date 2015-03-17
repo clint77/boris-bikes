@@ -1,5 +1,8 @@
-boris-bikes
+#Boris Bikes
 ===========
+
+Our first ever pair programming task at Makers Academy started on day 1 of our 12 weeks bootcamp. Test driven development introduction to Ruby.
+
 ###Clint & Andy's Domain Model
 
 #Classes
